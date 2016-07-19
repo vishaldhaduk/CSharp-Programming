@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MVCApplication.ViewModels
+@model EmployeeListViewModel
+@{
     ViewBag.Title = "MyView";
     Layout = null;
 }
@@ -10,6 +12,21 @@
     <title>MyView</title>
 </head>
 <body>
-    Hola
+    Hello @Model.UserName
+    <div>
+        <table>
+            <tr>
+                <th>Employee Name</th>
+                <th>Salary</th>
+            </tr>
+            @foreach (EmployeeViewModel item in Model.Employees)
+            {
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                </tr>
+            }
+        </table>
+    </div>
 </body>
 </html>
