@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilityMaster", "UtilityMas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUISamples", "GUISamples\GUISamples.csproj", "{68087751-5623-4804-BC49-9C6B9FDE3E57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCSamples", "MVCSamples\MVCSamples.csproj", "{8FEB5D0A-8360-488F-A873-8FA23278415E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCApplication", "MVCApplication\MVCApplication.csproj", "{AE439C43-FC66-49C0-A0A1-27C0EFCBD548}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{68087751-5623-4804-BC49-9C6B9FDE3E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68087751-5623-4804-BC49-9C6B9FDE3E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68087751-5623-4804-BC49-9C6B9FDE3E57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FEB5D0A-8360-488F-A873-8FA23278415E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FEB5D0A-8360-488F-A873-8FA23278415E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FEB5D0A-8360-488F-A873-8FA23278415E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FEB5D0A-8360-488F-A873-8FA23278415E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE439C43-FC66-49C0-A0A1-27C0EFCBD548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE439C43-FC66-49C0-A0A1-27C0EFCBD548}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE439C43-FC66-49C0-A0A1-27C0EFCBD548}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE439C43-FC66-49C0-A0A1-27C0EFCBD548}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
