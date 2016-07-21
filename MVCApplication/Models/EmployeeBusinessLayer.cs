@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MVCApplication.DataAccessLayer;
 
 namespace MVCApplication.Models
 {
@@ -9,6 +10,9 @@ namespace MVCApplication.Models
     {
         public List<Employee> GetEmployees()
         {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            return salesDal.Employees.ToList();
+
             List<Employee> employees = new List<Employee>();
             Employee emp = new Employee();
             emp.FirstName = "johnson";
@@ -17,6 +21,14 @@ namespace MVCApplication.Models
             employees.Add(emp);
 
             return employees;
+        }
+
+        public Employee SaveEmployee(Employee e)
+        {
+            SalesERPDAL s = new SalesERPDAL();
+            s.Employees.Add(e);
+            s.SaveChanges();
+            return e;
         }
     }
 }
