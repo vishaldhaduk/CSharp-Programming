@@ -65,7 +65,7 @@ namespace MVCApplication.Controllers
 
         public ActionResult AddNew()
         {
-            return View("CreateEmployee");
+            return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
@@ -73,9 +73,28 @@ namespace MVCApplication.Controllers
             switch (BtnSubmit)
             {
                 case "Save Employee":
-                    EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
-                    empBal.SaveEmployee(e);
-                    return RedirectToAction("Index");
+                    if (ModelState.IsValid)
+                    {
+
+                        EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
+                        empBal.SaveEmployee(e);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        CreateEmployeeViewModel vm = new CreateEmployeeViewModel();
+                        vm.FirstName = e.FirstName;
+                        vm.LastName = e.LastName;
+                        if (e.Salary != null)
+                        {
+                            vm.Salary = e.Salary.ToString();
+                        }
+                        else
+                        {
+                            vm.Salary = ModelState["Salary"].Value.AttemptedValue;
+                        }
+                        return View("CreateEmployee", vm);
+                    }
                 case "Cancel":
                     return RedirectToAction("Index");
             }
