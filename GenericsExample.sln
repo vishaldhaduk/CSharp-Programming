@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCApplication", "MVCApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MozHelper", "MozHelper\MozHelper.csproj", "{A9629546-5E04-4483-B8DC-2AC5185BE63D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirefoxHelper", "FirefoxHelper\FirefoxHelper.csproj", "{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A9629546-5E04-4483-B8DC-2AC5185BE63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9629546-5E04-4483-B8DC-2AC5185BE63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9629546-5E04-4483-B8DC-2AC5185BE63D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
