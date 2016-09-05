@@ -10,10 +10,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Management;
 using System.Windows.Threading;
 using System.Timers;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
 
 
 namespace FirefoxHelper
@@ -30,13 +32,47 @@ namespace FirefoxHelper
         public static string WindowName { get; set; }
         public static string Language { get; set; }
         public static string Shortcut { get; set; }
+
+        public string GIFPATH
+        {
+            get
+            {
+                return string.Concat(Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory())),
+                    "\\progress-animation-final.gif");
+            }
+        }
         public MainWindow()
         {
             InitializeComponent();
 
-            InitializeLanguageRelatedData();
 
-            InitializeEventSubscription();
+            //System.Drawing.Image img;
+
+            //img = System.Drawing.Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+            //                @".Resources\\progress-animation-final.gif"));
+
+            //img = System.Drawing.Image.FromFile(@"D:\Personal\Files\CSharp-Programming\FirefoxHelper\progress-animation-final.gif");
+            //aimg.AnimatedBitmap = (System.Drawing.Bitmap)img;
+
+            //BitmapImage image = new BitmapImage(new Uri(base.BaseUri, @"/Assets/favorited.png"));
+            //string wanted_path = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+
+            //DisableAutoUpdate();
+
+            //InitializeLanguageRelatedData();
+
+            //InitializeEventSubscription();
+        }
+
+        private void myGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            myGif.Position = new TimeSpan(0,0,1);
+            myGif.Play();
+        }
+
+        private static void DisableAutoUpdate()
+        {
+            updateSettingsFile(GetPathOfPrefsFile());
         }
 
         internal void InitializeEventSubscription()
@@ -117,6 +153,7 @@ namespace FirefoxHelper
                 watcherFirefox = null;
             }
         }
+
         public static void InitializeLanguageRelatedData()
         {
             string culture = GetCurrentCulture();
@@ -153,6 +190,63 @@ namespace FirefoxHelper
             return "en";
             //return "fr";
             return "es";
+        }
+
+        private static void updateSettingsFile(string pathOfPrefsFile)
+        {
+            string[] contentsOfFile = File.ReadAllLines(pathOfPrefsFile);
+            // We are looking for "user_pref("browser.download.useDownloadDir", true);"
+            // This needs to be set to:
+            // "user_pref("browser.download.useDownloadDir", false);"
+            List<String> outputLines = new List<string>();
+            foreach (string line in contentsOfFile)
+            {
+                if (line.StartsWith("user_pref(\"app.update.enabled\""))
+                {
+                    Console.WriteLine("Found it already in file, replacing");
+                }
+                else
+                {
+                    outputLines.Add(line);
+                }
+            }
+
+            // Finally add the value we want to the end
+            outputLines.Add("user_pref(\"app.update.enabled\", false);");
+            // Rename the old file preferences for safety...
+            File.Move(pathOfPrefsFile, System.IO.Path.GetDirectoryName(pathOfPrefsFile) + @"\" + System.IO.Path.GetFileName(pathOfPrefsFile) + ".OLD." + Guid.NewGuid().ToString());
+            // Write the new file.
+            File.WriteAllLines(pathOfPrefsFile, outputLines.ToArray());
+        }
+
+        private static string GetPathOfPrefsFile()
+        {
+            // Get roaming folder, and get the profiles.ini
+            string iniFilePath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Mozilla\Firefox\profiles.ini";
+            // Profiles.ini tells us what folder the preferences file is in.
+            string contentsOfIni = File.ReadAllText(iniFilePath);
+
+            int locOfPath = contentsOfIni.IndexOf("Path=Profiles");
+            int endOfPath = contentsOfIni.IndexOf(".default", locOfPath);
+
+            int startOfPath = locOfPath + "Path=Profiles".Length + 1;
+            int countofCopy = ((endOfPath + ".default".Length) - startOfPath);
+            string path = contentsOfIni.Substring(startOfPath, countofCopy);
+
+            string toReturn = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Mozilla\Firefox\Profiles\" + path + @"\prefs.js";
+            return toReturn;
+        }
+
+        public static bool isFireFoxOpen()
+        {
+            foreach (Process proc in Process.GetProcesses())
+            {
+                if (proc.ProcessName == "firefox")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

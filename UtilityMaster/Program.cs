@@ -11,7 +11,7 @@ namespace UtilityMaster
     {
         static void Main(string[] args)
         {
-            CallMoneyTypeConversion();
+            ImportData.ConnectDb();
             Console.ReadKey();
         }
 
@@ -23,8 +23,6 @@ namespace UtilityMaster
 
             Console.WriteLine("Decimal :" + d);
             Console.WriteLine("Int :" + truncatedVAlue);
-
-            
         }
     }
 }

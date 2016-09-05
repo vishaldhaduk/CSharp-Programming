@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{599D2D43-52ED-464C-933E-92146F2272D9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{A9629546-5E04-4483-B8DC-2AC5185BE63D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UtilityMaster</RootNamespace>
-    <AssemblyName>UtilityMaster</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>MozHelper</RootNamespace>
+    <AssemblyName>MozHelper</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,9 +32,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LZ4">
+      <HintPath>C:\Users\vishal.dhaduk.LAVASOFT\Documents\Source\Work\WebCompanion\Lib\LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\vishal.dhaduk.LAVASOFT\Documents\Source\Work\WebCompanion\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,12 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppCore\MoneyConversionExample.cs" />
-    <Compile Include="AppCore\TypeConversion.cs" />
-    <Compile Include="ImportData.cs" />
-    <Compile Include="MemberMaster.cs" />
+    <Compile Include="FirefoxPath.cs" />
+    <Compile Include="IOHelper.cs" />
+    <Compile Include="KeyPressHelper.cs" />
+    <Compile Include="MetadataHelper.cs" />
+    <Compile Include="Mozlz4Helper.cs" />
+    <Compile Include="PluginJSON.cs" />
+    <Compile Include="PreferenceHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserHelper.cs" />
+    <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
