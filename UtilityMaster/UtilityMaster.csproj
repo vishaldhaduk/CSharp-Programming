@@ -44,6 +44,8 @@
     <Compile Include="AppCore\MoneyConversionExample.cs" />
     <Compile Include="AppCore\TypeConversion.cs" />
     <Compile Include="ImportData.cs" />
+    <Compile Include="MemberAccountMaster.cs" />
+    <Compile Include="MemberDetailMaster.cs" />
     <Compile Include="MemberMaster.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

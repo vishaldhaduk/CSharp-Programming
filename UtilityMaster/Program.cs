@@ -11,7 +11,8 @@ namespace UtilityMaster
     {
         static void Main(string[] args)
         {
-            ImportData.ConnectDb();
+            //ImportData.ConnectDb();
+            ImportData.ConnectSP();
             Console.ReadKey();
         }
 
