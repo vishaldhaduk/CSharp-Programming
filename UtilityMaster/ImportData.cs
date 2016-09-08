@@ -114,9 +114,18 @@ namespace UtilityMaster
                         MemberDetailMaster md = new MemberDetailMaster();
                         md.ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
                         md.MemberMasterID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
-                        md.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+
+                        string add = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                        string city = reader.GetValue(reader.GetOrdinal("City")).ToString();
+                        string province = reader.GetValue(reader.GetOrdinal("Province")).ToString();
+                        string country = reader.GetValue(reader.GetOrdinal("Country")).ToString();
+                        string postal = reader.GetValue(reader.GetOrdinal("Postal")).ToString();
+
+                        string fAddress = string.Concat(ModifyAddress(add), ",", city, ",", province, ",", country, ",", postal);
+
+                        md.Address = fAddress;
                         md.DOB = (reader.GetValue(reader.GetOrdinal("DOB"))).ToString();
-                        md.Sex = reader.GetValue(reader.GetOrdinal("Sex")).ToString();
+                        //md.Sex = reader.GetValue(reader.GetOrdinal("Sex")).ToString();
                         md.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                         md.THome = reader.GetValue(reader.GetOrdinal("THome")).ToString();
                         md.TBusiness = reader.GetValue(reader.GetOrdinal("TBusiness")).ToString();
@@ -129,23 +138,45 @@ namespace UtilityMaster
                         listMemberDetail.Add(md);
                     }
                 }
-
-                InsertMemberDetailMaster(listMember, conn, cmd);
+                InserMemberMaster(listMember, conn, cmd);
+                InsertMemberDetailMaster(listMemberDetail, conn, cmd);
             }
         }
 
-        private static void InsertMemberDetailMaster(List<MemberMaster> listMember, SqlConnection conn, SqlCommand cmd)
+        public static string ModifyAddress(string str)
+        {
+            int index = str.IndexOf("'");
+
+            if (index != -1)
+            {
+                str = str.Insert(index, "'");
+            }
+
+            return str;
+        }
+
+        private static void InsertMemberDetailMaster(List<MemberDetailMaster> lmd, SqlConnection conn, SqlCommand cmd)
         {
             for (int i = 0; i <= listMember.Count(); i++)
             {
                 try
                 {
-                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberMaster] ([ID] ,[BarcodeId] , " +
-                        "[LName] ,[FName] ,[IsPrimary] ,[FamilyId] ,[Title])" +
-                        " Values (" + listMember[i].ID + ", '" + listMember[i].BarcodeId.ToString() + "', " +
-                        "'" + listMember[i].LName.ToString() + "' " +
-                        ", '" + listMember[i].FName.ToString() + "', " + 0 + ", " +
-                        "" + listMember[i].FamilyId + ", '" + listMember[i].Title + "' )";
+                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberDetailMaster] ([MemberMasterID], [Address], " +
+                    "[DOB], [Sex], [Email] ,[Newsletter], [MemberType], " +
+                        "[THome] ,[TBusiness] ,[TFax])" +
+                        " Values (" + lmd[i].ID + ", ' " +
+                        "" + lmd[i].Address.ToString() + "', " +
+                        "'" + lmd[i].DOB.ToString() + "', " +
+                        "'', " +
+                        "'" + lmd[i].Email.ToString() + "', " +
+                        "" + 1 + ", " +
+                        "'" + lmd[i].MemberType.ToString() + "', " +
+                        "'" + lmd[i].THome.ToString() + "', " +
+                        "'" + lmd[i].TBusiness.ToString() + "', " +
+                        "'" + lmd[i].TFax.ToString() + "')";
+
+
+                    //"'" + listMember[i].NewsLetter + "' "+ 
 
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = conn;
