@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UtilityMaster
 {
-    class MemberAccountMaster
+    public class MemberAccountMaster
     {
         public int ID { get; set; }
         //[ForeignKey("MemberMaster")]
