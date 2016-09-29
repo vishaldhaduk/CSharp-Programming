@@ -44,7 +44,7 @@ namespace FirefoxHelper
         public MainWindow()
         {
             InitializeComponent();
-
+            GetFirefoxVersion();
 
             //System.Drawing.Image img;
 
@@ -62,6 +62,31 @@ namespace FirefoxHelper
             //InitializeLanguageRelatedData();
 
             //InitializeEventSubscription();
+        }
+
+        public static string GetFirefoxVersion()
+        {
+            string path = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+            int bVersion = 46;
+            try
+            {
+                Microsoft.Win32.RegistryKey registry = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\firefox.exe");
+
+                if (registry != null)
+                    path = registry.GetValue("").ToString();
+
+                if (path != null)
+                {
+                    string sVersion = FileVersionInfo.GetVersionInfo(path.ToString()).FileVersion;
+                    //bVersion = Int32.Parse(sVersion.Substring(0, sVersion.IndexOf('.')));
+                }
+                return bVersion.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while getting firefox version during first run : " + ex.Message, ex);
+                return bVersion.ToString();
+            }
         }
 
         private void myGif_MediaEnded(object sender, RoutedEventArgs e)

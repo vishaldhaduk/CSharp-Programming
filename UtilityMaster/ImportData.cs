@@ -14,11 +14,11 @@ namespace UtilityMaster
         public static List<MemberDetailMaster> listMemberDetail = new List<MemberDetailMaster>();
         public static List<MemberAccountMaster> listMemberAccount = new List<MemberAccountMaster>();
 
-        //public static string connString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=AGSDB;Integrated Security=SSPI;";
-        //public static string connTestString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=Test;Integrated Security=SSPI;";
+        public static string connString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=AGSDB;Integrated Security=SSPI;";
+        public static string connTestString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=Test;Integrated Security=SSPI;";
 
-        public static string connString = "Data Source=VISHAL-PC;Initial Catalog=AGSDB;Integrated Security=SSPI;";
-        public static string connTestString = "Data Source=VISHAL-PC;Initial Catalog=Test;Integrated Security=SSPI;";
+        //public static string connString = "Data Source=VISHAL-PC;Initial Catalog=AGSDB;Integrated Security=SSPI;";
+        //public static string connTestString = "Data Source=VISHAL-PC;Initial Catalog=Test;Integrated Security=SSPI;";
 
         #region InsertUsingSP
         internal static void ConnectSP()
@@ -51,7 +51,7 @@ namespace UtilityMaster
 
                         MemberDetailMaster md = new MemberDetailMaster();
                         md.ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
-                        md.MemberMasterID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
+                        md.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
 
                         string add = reader.GetValue(reader.GetOrdinal("Address")).ToString();
                         string city = reader.GetValue(reader.GetOrdinal("City")).ToString();
@@ -74,7 +74,7 @@ namespace UtilityMaster
 
                         MemberAccountMaster mam = new MemberAccountMaster();
                         mam.ID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
-                        mam.MemberMasterID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
+                        mam.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ID")));
                         //mam.Mail = reader.GetValue(reader.GetOrdinal("Mail")).ToString();
                         mam.Amount = reader.GetValue(reader.GetOrdinal("PAID")).ToString();
                         mam.PaymentType = reader.GetValue(reader.GetOrdinal("PayType")).ToString();
@@ -84,19 +84,19 @@ namespace UtilityMaster
                     }
                 }
                 //InserMemberMaster(listMember, conn, cmd);
-                //InsertMemberDetailMaster(listMemberDetail, conn, cmd);
+                InsertMemberDetailMaster(listMemberDetail, conn, cmd);
                 InsertMemberAccountMaster(listMemberAccount, conn, cmd);
-
             }
         }
 
-        private static void InsertMemberAccountMaster(List<MemberAccountMaster> lma, SqlConnection conn, SqlCommand cmd)
+        private static void InsertMemberAccountMaster(List<MemberAccountMaster> lma, SqlConnection conn, SqlCommand cmd1)
         {
             for (int i = 0; i <= lma.Count(); i++)
             {
                 try
                 {
-                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberAccountMaster] ([MemberMasterID], [Paid], [Amount], [DepositDate], [PaymentType] ,[Comment]) Values (" + lma[i].ID + "," + 0 + ",'" + lma[i].Amount.ToString() + "','" + lma[i].DepositDate.ToString() + "','" + lma[i].PaymentType.ToString() + "','" + lma[i].Comment.ToString() + "')";
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberAccountMaster] ([MemberID], [Paid], [Amount], [DepositDate], [PaymentType] ,[Comment]) Values (" + lma[i].ID + "," + 0 + ",'" + lma[i].Amount.ToString() + "','" + lma[i].DepositDate.ToString() + "','" + lma[i].PaymentType.ToString() + "','" + lma[i].Comment.ToString() + "')";
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = conn;
                     cmd.ExecuteNonQuery();
@@ -125,7 +125,7 @@ namespace UtilityMaster
             {
                 try
                 {
-                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberDetailMaster] ([MemberMasterID], [Address], " +
+                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberDetailMaster] ([MemberID], [Address], " +
                     "[DOB], [Sex], [Email] ,[Newsletter], [MemberType], " +
                         "[THome] ,[TBusiness] ,[TFax])" +
                         " Values (" + lmd[i].ID + ", ' " +

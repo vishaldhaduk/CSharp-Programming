@@ -10,7 +10,7 @@ namespace UtilityMaster
     {
         public int ID { get; set; }
         //[ForeignKey("MemberMaster")]
-        public int MemberMasterID { get; set; }
+        public int MemberID { get; set; }
         public bool Paid { get; set; }
         public string Amount { get; set; }
         public string DepositDate { get; set; }
