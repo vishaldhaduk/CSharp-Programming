@@ -83,20 +83,22 @@ namespace UtilityMaster
                         listMemberAccount.Add(mam);
                     }
                 }
-                //InserMemberMaster(listMember, conn, cmd);
+                InserMemberMaster(listMember, conn, cmd);
                 InsertMemberDetailMaster(listMemberDetail, conn, cmd);
                 InsertMemberAccountMaster(listMemberAccount, conn, cmd);
             }
         }
 
-        private static void InsertMemberAccountMaster(List<MemberAccountMaster> lma, SqlConnection conn, SqlCommand cmd1)
+        private static void InsertMemberAccountMaster(List<MemberAccountMaster> lma, SqlConnection conn, SqlCommand cmd)
         {
             for (int i = 0; i <= lma.Count(); i++)
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberAccountMaster] ([MemberID], [Paid], [Amount], [DepositDate], [PaymentType] ,[Comment]) Values (" + lma[i].ID + "," + 0 + ",'" + lma[i].Amount.ToString() + "','" + lma[i].DepositDate.ToString() + "','" + lma[i].PaymentType.ToString() + "','" + lma[i].Comment.ToString() + "')";
+                    //SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "INSERT INTO [AGSDB].[dbo].[MemberAccountMaster]  "+
+                            " ([MemberID], [Paid], [Amount], [DepositDate], [PaymentType] ,[Comment]) Values  "+
+                            "(" + lma[i].ID + "," + 0 + ",'" + Convert.ToString(lma[i].Amount) + "','" + Convert.ToString(lma[i].DepositDate) + "','" + Convert.ToString(lma[i].PaymentType) + "','" + Convert.ToString(lma[i].Comment) + "')";
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = conn;
                     cmd.ExecuteNonQuery();
