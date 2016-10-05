@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MozHelper", "MozHelper\MozH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirefoxHelper", "FirefoxHelper\FirefoxHelper.csproj", "{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCompanionHelper", "WebCompanionHelper\WebCompanionHelper.csproj", "{D653099C-F85B-4074-84C8-2BBC8B02277F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61DDC5A8-C4F8-4310-A539-6AEC7521CF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D653099C-F85B-4074-84C8-2BBC8B02277F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D653099C-F85B-4074-84C8-2BBC8B02277F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D653099C-F85B-4074-84C8-2BBC8B02277F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D653099C-F85B-4074-84C8-2BBC8B02277F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
