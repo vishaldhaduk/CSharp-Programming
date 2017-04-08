@@ -9,7 +9,12 @@ namespace MozHelper
     {
         static void Main(string[] args)
         {
-            KeyPressHelper.PressKeyForFF();
+            KeyPressHelper kph = new KeyPressHelper();
+            kph.InitializeEventSubscription();
+
+            Console.ReadKey();
+            Console.ReadLine();
+            //KeyPressHelper.PressKeyForFF();
             //Mozlz4Helper.GetCurrentSearch();
         }
     }

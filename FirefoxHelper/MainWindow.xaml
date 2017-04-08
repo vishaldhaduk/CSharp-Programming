@@ -4,18 +4,38 @@
         xmlns:controls="clr-namespace:FirefoxHelper"
         xmlns:loc="clr-namespace:FirefoxHelper.Properties"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="FirefoxHelper.MainWindow"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Web Companion" Height="435" Width="375" >
+        <!--Top="50" Left="50"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ShowInTaskbar="False"
+        WindowStyle="None"  
+        SnapsToDevicePixels="True"
+            MinHeight="435"
+            MinWidth="375">-->
     <Window.Resources>
     </Window.Resources>
     <Grid>
+        <DockPanel Margin="0,0,0,-4">
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button Command="New" Content="New" />
+                    <Button Command="Open" Content="Open" />
+                    <Button Command="Save" Content="Save" />
+                </ToolBar>
+            </ToolBarTray>
+            <StatusBar Height="21" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Width="431" Margin="0,0,10,0"/>
+            <Grid Height="267" VerticalAlignment="Top" Width="451" DockPanel.Dock="Left"/>
+        </DockPanel>
+
         <!--<controls:GIFImageControl Stretch="None" Margin="52 80 54 60" VerticalAlignment="Top" 
                                  GIFSource="{x:Static loc:Resources.FirefoxHelper}" ></controls:GIFImageControl>-->
-                  <!--GIFSource="D:\Personal\Files\CSharp-Programming\FirefoxHelper\progress-animation-final.gif" />-->
-                  <!--GIFSource="{x:Static loc: .progress_animation_final_gif}" />-->
+        <!--GIFSource="D:\Personal\Files\CSharp-Programming\FirefoxHelper\progress-animation-final.gif" />-->
+        <!--GIFSource="{x:Static loc: .progress_animation_final_gif}" />-->
 
-        <MediaElement x:Name="myGif" MediaEnded="myGif_MediaEnded" UnloadedBehavior="Manual" 
+        <MediaElement x:Name="myGif" MediaEnded="myGif_MediaEnded" UnloadedBehavior="Manual" Visibility="Collapsed"
                       Source="D:\Personal\Files\CSharp-Programming\FirefoxHelper\progress-animation-final.gif" LoadedBehavior="Play" Stretch="None"/>
-        
+
         <controls:AnimatedImage x:Name="aimg" Visibility="Collapsed"
                                 Stretch="None" />
     </Grid>

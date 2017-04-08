@@ -4,7 +4,101 @@
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         xmlns:views="clr-namespace:GUISamples"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <!--<views:TextBoxHelper x:Name="TextBoxView" HorizontalAlignment="Left" d:IsHidden="True"/>-->
-    </Grid>
+    <!--<Grid>-->
+    <!--<views:TextBoxHelper x:Name="TextBoxView" HorizontalAlignment="Left" d:IsHidden="True"/>-->
+        <!--<views:RoundProgressBar x:Name="RoundProgressBarView" HorizontalAlignment="Left" />-->
+    <!--<Grid>
+
+        -->
+    <!--<StackPanel>
+            <TextBox x:Name="MyText"></TextBox>
+            <Popup x:Name="Popup" PopupAnimation="Fade" VerticalAlignment="Top">
+                <Border Background="Red">
+                    <TextBlock>Test Popup Content</TextBlock>
+                </Border>
+            </Popup>
+            <StackPanel.Triggers>
+                <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="MyText">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="MyText">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+                            </BooleanAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </StackPanel.Triggers>
+        </StackPanel>-->
+    <!--
+
+
+
+
+        <Control VerticalAlignment="Top">
+            <Control.Template>
+                <ControlTemplate>
+                    <StackPanel>
+                        <TextBox x:Name="MyText"></TextBox>
+                        <Popup x:Name="Popup" PopupAnimation="Fade" VerticalAlignment="Top">
+                            <Popup.Triggers>
+                                <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="Popup">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                                <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="Popup">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                                <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+                                            </BooleanAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Popup.Triggers>
+
+                            <Border Background="Red">
+                                <TextBlock>Test Popup Content</TextBlock>
+                            </Border>
+                        </Popup>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="UIElement.MouseEnter" SourceName="MyText">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="True"/>
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="UIElement.MouseLeave" SourceName="MyText">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <BooleanAnimationUsingKeyFrames Storyboard.TargetName="Popup" Storyboard.TargetProperty="(Popup.IsOpen)">
+                                        <DiscreteBooleanKeyFrame KeyTime="00:00:00" Value="False"/>
+                                    </BooleanAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Control.Template>
+        </Control>
+    </Grid>-->
+
+    <!--</Grid>-->
 </Window>

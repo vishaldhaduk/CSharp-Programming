@@ -12,5 +12,6 @@ namespace FirefoxHelper
     /// </summary>
     public partial class App : Application
     {
+      
     }
 }

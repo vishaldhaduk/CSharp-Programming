@@ -4,6 +4,9 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Management;
+using Lavasoft.WebBar.UI.AppCore.Utilities;
+
 
 namespace MozHelper
 {
@@ -39,5 +42,55 @@ namespace MozHelper
             //SendKeys.SendWait("11");
             //SendKeys.SendWait("=");
         }
+
+        #region BrowserWatcher
+        private ManagementEventWatcher watcherFirefox;
+        internal void InitializeEventSubscription()
+        {
+            try
+            {
+                Console.WriteLine("Subscribing to browser startup events.");
+                string queryString =
+               "SELECT TargetInstance " +
+               "FROM __InstanceCreationEvent " +
+               "WITHIN  10 " +
+               "WHERE TargetInstance ISA 'Win32_Process' " +
+               "AND TargetInstance.Name = ";
+
+                string queryStringFirefox = queryString + "'firefox.exe'";
+
+                // The dot in the scope means use the current machine
+                string scope = @"\\.\root\CIMV2";
+
+                // Create a watcher and listen for events
+
+                watcherFirefox = new ManagementEventWatcher(scope, queryStringFirefox, new EventWatcherOptions { });
+                watcherFirefox.EventArrived += FirefoxProcessStarted;
+                watcherFirefox.Start();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, ex);
+            }
+        }
+
+        /// <summary>
+        /// Process start event. It detects if any of the browser starts 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FirefoxProcessStarted(object sender, EventArrivedEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Fuck off");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, ex);
+            }
+        }
+        #endregion
     }
 }

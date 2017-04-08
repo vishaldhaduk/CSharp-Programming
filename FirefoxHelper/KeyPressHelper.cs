@@ -17,30 +17,31 @@ namespace FirefoxHelper
         // Activate an application window.
         [DllImport("USER32.DLL")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
-        internal static void PressKeyForFF(string Shortcut, string WindowName)
+        internal static bool PressKeyForFF(string Shortcut, string WindowName)
         {
-            // Get a handle to the Calculator application. The window class 
-            // and window name were obtained using the Spy++ tool.
+            Console.WriteLine("Checking if window exist or not...");
             IntPtr calculatorHandle = FindWindow("MozillaWindowClass", WindowName);
-            //IntPtr calculatorHandle = FindWindow("MozillaWindowClass", "Restore Search Settings - Mozilla Firefox");
 
-            // Verify that Calculator is a running process. 
             if (calculatorHandle == IntPtr.Zero)
             {
-                //MessageBox.Show("Calculator is not running.");
-                return;
+                Console.WriteLine("FF window doesnt exist...");
+                return false;
             }
 
-            // Make Calculator the foreground application and send it  
-            // a set of calculations.
             SetForegroundWindow(calculatorHandle);
-            //SendKeys.SendWait("D");
-            SendKeys.SendWait(Shortcut);
+
+            SendKeys.SendWait("ت");
             MessageBox.Show("Nailed it");
-            //SendKeys.SendWait("111");
-            //SendKeys.SendWait("*");
-            //SendKeys.SendWait("11");
-            //SendKeys.SendWait("=");
+            //SendKeys.SendWait("J");
+            //SendKeys.SendWait("+{TAB}");
+            //SendKeys.SendWait("{ENTER}");
+
+            //SendKeys.SendWait(Shortcut);
+
+
+            Console.WriteLine("Successfully press the key...");
+            return true;
+            //MessageBox.Show("Nailed it");
         }
     }
 }

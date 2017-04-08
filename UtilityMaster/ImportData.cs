@@ -15,7 +15,7 @@ namespace UtilityMaster
         public static List<MemberAccountMaster> listMemberAccount = new List<MemberAccountMaster>();
 
         public static string connString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=AGSDB;Integrated Security=SSPI;";
-        public static string connTestString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=Test;Integrated Security=SSPI;";
+        public static string connTestString = "Data Source=DEV-Vishal\\SQLEXPRESS;Initial Catalog=Test1;Integrated Security=SSPI;";
 
         //public static string connString = "Data Source=VISHAL-PC;Initial Catalog=AGSDB;Integrated Security=SSPI;";
         //public static string connTestString = "Data Source=VISHAL-PC;Initial Catalog=Test;Integrated Security=SSPI;";
