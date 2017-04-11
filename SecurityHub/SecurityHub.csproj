@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{68087751-5623-4804-BC49-9C6B9FDE3E57}</ProjectGuid>
+    <ProjectGuid>{41973C18-186F-42B7-9006-4C0867974A0B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GUISamples</RootNamespace>
-    <AssemblyName>GUISamples</AssemblyName>
+    <RootNamespace>SecurityHub</RootNamespace>
+    <AssemblyName>SecurityHub</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,13 +37,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -54,27 +49,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppCore\CircularProgress.cs" />
-    <Compile Include="AppCore\Converter\DoubleToPctConverter.cs" />
-    <Compile Include="AppCore\Events.cs" />
-    <Compile Include="AppCore\Events\CustomEventArgs.cs" />
-    <Compile Include="AppCore\Events\Publisher.cs" />
-    <Compile Include="AppCore\Events\Shape\Circle.cs" />
-    <Compile Include="AppCore\Events\Shape\Rectangle.cs" />
-    <Compile Include="AppCore\Events\Shape\Shape.cs" />
-    <Compile Include="AppCore\Events\Shape\ShapeContainer.cs" />
-    <Compile Include="AppCore\Events\Shape\ShapeEventArgs.cs" />
-    <Compile Include="AppCore\Events\Subscriber.cs" />
-    <Compile Include="AppCore\IEvents\IDrawingObjectcs.cs" />
-    <Compile Include="AppCore\IEvents\IShape.cs" />
-    <Compile Include="AppCore\IEvents\Shape.cs" />
-    <Compile Include="AppCore\IEvents\Subscriber1.cs" />
-    <Compile Include="RoundProgressBar.xaml.cs">
-      <DependentUpon>RoundProgressBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TextBoxHelper.xaml.cs">
-      <DependentUpon>TextBoxHelper.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="AppCore\Constatnts\Enum\FeatureEnum.cs" />
+    <Compile Include="UI\DependencyProperties\Commanding\CommandSink.cs" />
+    <Compile Include="UI\DependencyProperties\Commanding\CommandSinkBinding.cs" />
+    <Compile Include="UI\DependencyProperties\Commanding\ICommandSink.cs" />
+    <Compile Include="UI\DependencyProperties\Commanding\RelayCommand.cs" />
+    <Compile Include="UI\DependencyProperties\ListViewColumns.cs" />
+    <Compile Include="UI\ViewModels\BaseViewModel.cs" />
+    <Compile Include="UI\ViewModels\FeatureViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,14 +69,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RoundProgressBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TextBoxHelper.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -121,9 +95,12 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Folder Include="UI\UserControls\" />
+    <Folder Include="UI\Views\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="UI\DependencyProperties\Commanding\_ReadMe.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

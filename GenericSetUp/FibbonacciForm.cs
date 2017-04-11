@@ -5,45 +5,45 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace GenericSetUp
 {
-    public partial class Form1 : Form
+    public partial class FibbonacciForm : Form
     {
-        private Thread newThread;
-        private int numberToCompute = 0;
+         private int numberToCompute = 0;
         private int highestPercentageReached = 0;
 
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button startAsyncButton;
+        private System.Windows.Forms.Button cancelAsyncButton;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label resultLabel;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
 
-        public Form1()
-        {
+        public FibbonacciForm()
+        {	
             InitializeComponent();
 
-            backgroundWorker1 = new BackgroundWorker();
-
             InitializeBackgroundWorker();
-
-
         }
 
+        // Set up the BackgroundWorker object by  
+        // attaching event handlers.  
         private void InitializeBackgroundWorker()
         {
-            backgroundWorker1.DoWork +=
+            backgroundWorker1.DoWork += 
                 new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.RunWorkerCompleted +=
+            backgroundWorker1.RunWorkerCompleted += 
                 new RunWorkerCompletedEventHandler(
             backgroundWorker1_RunWorkerCompleted);
-            backgroundWorker1.ProgressChanged +=
+            backgroundWorker1.ProgressChanged += 
                 new ProgressChangedEventHandler(
             backgroundWorker1_ProgressChanged);
         }
-
-        private void startAsyncButton_Click(System.Object sender,
-           System.EventArgs e)
+	
+        private void startAsyncButton_Click(System.Object sender, 
+            System.EventArgs e)
         {
             // Reset the text in the result label.
             resultLabel.Text = String.Empty;
@@ -70,9 +70,9 @@ namespace GenericSetUp
             backgroundWorker1.RunWorkerAsync(numberToCompute);
         }
 
-        private void cancelAsyncButton_Click(System.Object sender,
+        private void cancelAsyncButton_Click(System.Object sender, 
             System.EventArgs e)
-        {
+        {   
             // Cancel the asynchronous operation. 
             this.backgroundWorker1.CancelAsync();
 
@@ -82,9 +82,9 @@ namespace GenericSetUp
 
         // This event handler is where the actual, 
         // potentially time-consuming work is done. 
-        private void backgroundWorker1_DoWork(object sender,
+        private void backgroundWorker1_DoWork(object sender, 
             DoWorkEventArgs e)
-        {
+        {   
             // Get the BackgroundWorker that raised this event.
             BackgroundWorker worker = sender as BackgroundWorker;
 
@@ -165,23 +165,23 @@ namespace GenericSetUp
             // event handler. This is a race condition. 
 
             if (worker.CancellationPending)
-            {
+            {   
                 e.Cancel = true;
             }
             else
-            {
+            {   
                 if (n < 2)
-                {
+                {   
                     result = 1;
                 }
                 else
-                {
-                    result = ComputeFibonacci(n - 1, worker, e) +
+                {   
+                    result = ComputeFibonacci(n - 1, worker, e) + 
                              ComputeFibonacci(n - 2, worker, e);
                 }
 
                 // Report progress as a percentage of the total task. 
-                int percentComplete =
+                int percentComplete = 
                     (int)((float)n / (float)numberToCompute * 100);
                 if (percentComplete > highestPercentageReached)
                 {
@@ -192,28 +192,5 @@ namespace GenericSetUp
 
             return result;
         }
-
-        #region Thread
-        // Programs the button to throw an exception when clicked.
-        private void button1_Click(object sender, System.EventArgs e)
-        {
-            throw new ArgumentException("The parameter was invalid");
-        }
-
-        // Start a new thread, separate from Windows Forms, that will throw an exception.
-        private void button2_Click(object sender, System.EventArgs e)
-        {
-            ThreadStart newThreadStart = new ThreadStart(newThread_Execute);
-            newThread = new Thread(newThreadStart);
-            newThread.Start();
-        }
-
-        // The thread we start up to demonstrate non-UI exception handling. 
-        void newThread_Execute()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-        #endregion
-
     }
 }

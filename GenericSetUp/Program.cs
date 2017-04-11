@@ -21,6 +21,15 @@ namespace GenericSetUp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+
+
+            //ExceptionHandling();
+
+            Application.Run(new FibbonacciForm());
+        }
+
+        private static void ExceptionHandling()
+        {
             Application.ThreadException += new ThreadExceptionEventHandler(Form1_UIThreadException);
 
             // Set the unhandled exception mode to force all Windows Forms errors to go through
@@ -30,8 +39,6 @@ namespace GenericSetUp
             // Add the event handler for handling non-UI thread exceptions to the event. 
             AppDomain.CurrentDomain.UnhandledException +=
                 new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-
-            Application.Run(new Form1());
         }
 
         // Handle the UI exceptions by showing a dialog box, and asking the user whether
