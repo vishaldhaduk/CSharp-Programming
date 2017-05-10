@@ -12,9 +12,17 @@ namespace GUISamples
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string myTodoList { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+
+            FavLinksView f = new FavLinksView();
+            f.ShowDialog();
+
+            //CustomUserControlSample c = new CustomUserControlSample();
+            //c.ShowDialog();
 
             //GetIEvents();
 
@@ -26,8 +34,8 @@ namespace GUISamples
             //Console.WriteLine("Press Enter to close this window.");
             //Console.ReadLine();
 
-            RoundProgressBar r = new RoundProgressBar();
-            r.ShowDialog();
+            //RoundProgressBar r = new RoundProgressBar();
+            //r.ShowDialog();
 
             //TextBoxView.Visibility = System.Windows.Visibility.Visible;
 
@@ -66,7 +74,6 @@ namespace GUISamples
             // Keep the console window open in debug mode.
             System.Console.WriteLine("Press any key to exit.");
             //System.Console.ReadKey();
-
         }
 
         private static void GetBasicEvents()
